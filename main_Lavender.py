@@ -44,7 +44,7 @@ async def on_ready(): # 봇이 로깅을 끝내고 여러가지를 준비한 뒤
 async def schedule_daily_message():
     now = datetime.datetime.now()
     # then = now+datetime.timedelta(days=1)
-    then = now.replace(hour=2, minute=10, second=0)
+    then = now.replace(hour=2, minute=10)
     wait_time = (then-now).total_seconds()
     await asyncio.sleep(wait_time)
     channel = client.get_channel(1205354966567624725)
