@@ -50,4 +50,4 @@ async def schedule_daily_message():
     
 
                  
-client.run('TOKEN')
+client.run(TOKEN)
