@@ -1,4 +1,4 @@
-from settings import TOKEN, guild_num, sheet_code, json_file
+
 import random
 import discord
 from discord.ext import tasks, commands
