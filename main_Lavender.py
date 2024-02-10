@@ -39,18 +39,17 @@ client = discord.Client(intents=intents) # client 생성. 디스코드와 연결
 @client.event # 데코레이터 - 이벤트 등록
 async def on_ready(): # 봇이 로깅을 끝내고 여러가지를 준비한 뒤 호출
     print(f'We have logged in as {client.user}')
+    await schedule_daily_message()
     
-"""async def message():
-    print('test')
-    channel_id = client.get_channel('1205354966567624725')
-    await channel_id.send('통금시간')
-     
-schedule.every().day.at("15:08").do(message)
+async def schedule_daily_message():
+    now = datetime.datetime.now()
+    # then = now+datetime.timedelta(days=1)
+    then = now.replace(hour=2, minute=00, second=0)
+    wait_time = (then-now).total_seconds()
+    await asyncio.sleep(wait_time)
+    channel = client.get_channel(1205354966567624725)
+    await channel.send("test")
 
-while True:
-    schedule.run_pending()
-    time.sleep(1)
-        """
 
 @client.event
 async def on_message(message): # 봇이 메시지를 받았을 때 호출됩니다
