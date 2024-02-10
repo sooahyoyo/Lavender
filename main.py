@@ -58,22 +58,6 @@ async def schedule_daily_message():
 
     
 
-"""def seconds_until(hours, minutes):
-    given_time = datetime.time(hours, minutes)
-    now = datetime.datetime.now()
-    future_exec = datetime.datetime.combine(now, given_time)
-    if (future_exec - now).days < 0:  # If we are past the execution, it will take place tomorrow
-        future_exec = datetime.datetime.combine(now + datetime.timedelta(days=1), given_time) # days always >= 0
-
-    return (future_exec - now).total_seconds()
-    
-
-async def my_job_forever(self):
-    while True:  # Or change to self.is_running or some variable to control the task
-        await asyncio.sleep(seconds_until(00,41))  # Will stay here until your clock says 11:58
-        test_channel = bot.get_channel('1205897511689257063')
-        await test_channel.send('정해진 시간에 작동합니다.')
-        await asyncio.sleep(60)  # Practical solution to ensure that the print isn't spammed as long as it is 11:58"""
 
                  
 client.run(TOKEN)
