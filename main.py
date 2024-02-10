@@ -1,19 +1,10 @@
-from settings import TOKEN, guild_num, sheet_code, json_file
-import random
+from settings import TOKEN
 import discord
 from discord.ext import tasks, commands
-from bs4 import BeautifulSoup
-import gspread
-import pprint
 import time
-import random
 import datetime, requests, json, random
 from datetime import timedelta, timezone
 import schedule
-from gspread_formatting import DataValidationRule, BooleanCondition, set_data_validation_for_cell_range
-from collections import Counter
-from oauth2client.service_account import ServiceAccountCredentials
-from discord import app_commands
 import asyncio
 
 
@@ -57,7 +48,6 @@ async def schedule_daily_message():
     # send a message
 
     
-
 
                  
 client.run(TOKEN)
