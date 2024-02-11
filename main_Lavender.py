@@ -33,6 +33,19 @@ intents.message_content = True
 
 client = discord.Client(intents=intents) # client 생성. 디스코드와 연결
 
+async def schedule_daily_message():
+    now = datetime.datetime.now()
+    # then = now+datetime.timedelta(days=1)
+    then = now.replace(hour=2, minute=00, second=0)
+    wait_time = (then-now).total_seconds()
+    await asyncio.sleep(wait_time)
+    channel = client.get_channel(1205354966567624725)
+    await channel.send("마감 시간입니다. 테이블을 정리하고 시든 꽃을 수거합니다.")
+
+    # wait for some time
+    # send a message
+    # wait for some time
+    # send a message
 
 
 # 콜백 스타일: 콜백은 기본적으로는 무엇인가 일어났을때 호출되는 기능
