@@ -60,20 +60,22 @@ async def on_message(message): # 봇이 메시지를 받았을 때 호출됩니�
         if (start != -1 and end != -1) and start<end: # [] 조건 찾기. [, ]가 존재해야 하고, 닫는 괄호가 여는 괄호보다 앞에 있으면 안된다.
             mention_keyword = message.content[start+1:end].strip().split('/') # /를 기준으로 나눠 리스트로 저장. 현재 받은 메세지에는 /가 없으므로 그냥 ['다이스'] 로 저장된다. 
             first_keyword = mention_keyword[0].strip()
-            if first_keyword == '1d6':
+            if first_keyword == '판매':
+                dice_result = str(random.choice([True, False]))
+                if dice_result == 'True':
+                    await message.channel.send(f'판매 성공! ', reference=message) # 답장 o
+                elif dice_result == 'False':
+                    await message.channel.send(f'판매 실패...', reference=message) # 답장 o
+            elif first_keyword == '판정':
                 dice_result = str(random.randint(1,6))
-                await message.channel.send(f'다이스를 굴리자... <{dice_result}>이 나왔다.', reference=message) # 답장 o
-            elif first_keyword == '1D6':
-                dice_result = str(random.randint(1,6))
-                await message.channel.send(f'다이스를 굴리자... <{dice_result}>이 나왔다.', reference=message) # 답장 o
-            elif first_keyword == '1d20':
-                dice_result = str(random.randint(1,20))
-                await message.channel.send(f'다이스를 굴리자... <{dice_result}>이 나왔다.', reference=message) # 답장 o
-            elif first_keyword == '1D20':
-                dice_result = str(random.randint(1,20))
-                await message.channel.send(f'다이스를 굴리자... <{dice_result}>이 나왔다.', reference=message) # 답장 o
-            elif first_keyword == '1d100':
-                dice_result = str(random.randint(1,100))
-                await message.channel.send(f'다이스를 굴리자... <{dice_result}>이 나왔다.', reference=message) # 답장 o   
+                await message.channel.send(f'{message.author.nick}의 점수가 {dice_result}보다 크면 성공!', reference=message) # 답장 o
+            elif first_keyword == '흥정':
+                dice1 = random.randint(1,6)
+                dice2 = random.randint(1,6)
+                dice3 = random.randint(1,6)
+                dice4 = random.randint(1,6)
+                dice5 = random.randint(1,6)
+                dice_sum = dice1 + dice2 + dice3 + dice4 + dice5
+                await message.channel.send(f'{message.author.nick}의 점수가 {dice_sum} 메모리를 획득했다!', reference=message) # 답장 o   
                  
 client.run(TOKEN)
