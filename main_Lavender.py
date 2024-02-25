@@ -1,7 +1,5 @@
 import os
 
-# print(os.getcwd())
-# os.chdir('c:/Users/dudtj/Desktop/라리에/배포용')
 
 #!/usr/bin/python3
 # -*- coding: utf-8 -*-
