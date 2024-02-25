@@ -161,7 +161,7 @@ async def 주문(interaction: discord.Interaction):
         char.update_cell(row_no, 12, checked)
         change_money(row_no, reward)
         await interaction.followup.send(f"출석이 완료되었습니다. \n"
-                                        f"***소지금 + {reward}***")
+                                        f"***메모리 + {reward}***")
 
 
 
@@ -181,7 +181,7 @@ async def 구매(interaction: discord.Interaction, name: str, much: int):
     else:
         row_no = search(interaction.user.id)
         if char.cell(row_no, 10, value_render_option='UNFORMATTED_VALUE').value < fetched[0][1] * much:
-            await interaction.followup.send("소지금이 부족합니다.")
+            await interaction.followup.send("메모리가 부족합니다.")
         else:
             change_money(row_no, -(much * fetched[0][1]))
             edit_inven(row_no, name, much)
@@ -195,7 +195,7 @@ async def 뽑기(interaction: discord.Interaction):
     row_no = search(interaction.user.id)
     cost = default.cell(13, 3, value_render_option='UNFORMATTED_VALUE').value
     if char.cell(row_no, 10, value_render_option='UNFORMATTED_VALUE').value < cost:
-        await interaction.followup.send("소지금이 부족합니다.")
+        await interaction.followup.send("메모리가 부족합니다.")
     else:
         fetched = item.findall('TRUE', in_column=6)
         if len(fetched) == 0:
@@ -370,8 +370,8 @@ async def 물주기(interaction: discord.Interaction):
 
 # 서버 관리자들만 사용할 수 있도록 권한 설정을 해두시기를 권장하는 커맨드들입니다.
 
-@tree.command(guild=guilds, description='캐릭터들에게 소지금이나 아이템을 지급합니다.')
-@app_commands.describe(name='정산 받을 캐릭터의 이름을 적어주세요.', money='양수는 소지금을 증가, 음수는 소지금을 차감합니다.',
+@tree.command(guild=guilds, description='캐릭터들에게 메모리나 아이템을 지급합니다.')
+@app_commands.describe(name='정산 받을 캐릭터의 이름을 적어주세요.', money='양수는 메모리를 증가, 음수는 메모리를 차감합니다.',
                            it_name='지급할 아이템의 이름을 적어주세요.', much='지급할 아이템의 개수를 적어주세요.')
 async def 정산(interaction: discord.Interaction, name: str, money: int = 0, it_name: str = None, much: int = 0):
     await interaction.response.defer()
@@ -386,7 +386,7 @@ async def 정산(interaction: discord.Interaction, name: str, money: int = 0, it
             pass
         else:
             change_money(row_no, money)
-        await interaction.followup.send(f"소지금: {money} | 아이템: {it_name} × {much}"
+        await interaction.followup.send(f"메모리: {money} | 아이템: {it_name} × {much}"
                                         f"\n{name}에게 정산되었습니다.")
     except gspread.exceptions.CellNotFound:
         await interaction.followup.send("존재하지 않는 캐릭터 혹은 아이템을 지정했습니다. 오탈자는 없는지 다시 확인해주세요.")
