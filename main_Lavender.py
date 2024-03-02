@@ -226,7 +226,7 @@ async def 사용(interaction: discord.Interaction, name: str):
         fetched = [i[0] for i in item.batch_get([f'D{it_row}:E{it_row}', f'H{it_row}'],
                                                 value_render_option='UNFORMATTED_VALUE')]
         if fetched[0][0] is True:
-            edit_inven(row_no, name, 0)
+            edit_inven(row_no, name, -1)
             await interaction.followup.send(f'>>> {fetched[1][0]}')
             if fetched[0][1] != 0:
                 heal(interaction.user.id, fetched[0][1])
